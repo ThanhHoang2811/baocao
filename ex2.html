@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .input-group {
+      margin-bottom: 15px;
+    }
+    .criteria {
+      list-style: none;
+      padding: 0;
+    }
+    .criteria li {
+      padding: 8px;
+      margin-bottom: 5px;
+      border-radius: 4px;
+      color: white;
+    }
+    .met {
+      background-color: #3caf3f;
+    }
+    .unmet {
+      background-color: #e13232;
+    }
+    .toggle {
+      margin-left: 10px;
+      cursor: pointer;
+      color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <h2>New password</h2>
+  <div class="input-group">
+    <input type="password" id="password" oninput="checkPassword()" />
+    <span class="toggle">Show</span>
+  </div>
+
+  <h3>Password requirements met!</h3>
+  <ul class="criteria">
+    <li id="length" class="unmet">8 characters</li>
+    <li id="number" class="unmet">1 number</li>
+    <li id="special" class="unmet">1 special character e.g., $, !, @, %, &</li>
+    <li id="whitespace" class="unmet">No leading or trailing whitespace</li>
+  </ul>
+
+  <script>
+    function checkPassword() {
+      const password = document.getElementById("password").value;
+      document.getElementById("length").className = password.length >= 8 ? 'met' : 'unmet';
+      document.getElementById("number").className = /\d/.test(password) ? 'met' : 'unmet';
+      document.getElementById("special").className = /[!@#$%^&*(),.?":{}|<>]/.test(password) ? 'met' : 'unmet';
+      document.getElementById("whitespace").className = password === password.trim() ? 'met' : 'unmet';
+    }
+  </script>
+</body>
+</html>
